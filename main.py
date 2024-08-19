@@ -1,5 +1,5 @@
 import sys
-from presentation.command.command import GitHubActivityCommand
+from src.presentation.command.command import GitHubActivityCommand
 
 
 def main():

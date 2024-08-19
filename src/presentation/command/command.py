@@ -1,4 +1,4 @@
-from infraestructure.command.command import ManageCommand
+from src.infraestructure.command.command import ManageCommand
 
 
 class GitHubActivityCommand:
