@@ -21,6 +21,6 @@ class GetUserActivityCommand:
             elif event["type"] == "PushEvent":
                 output.append(manage_events.get_push_event())
             else:
-                print("Other event not register", event["type"])
+                pass
 
         return output
