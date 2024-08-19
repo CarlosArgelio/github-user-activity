@@ -1,4 +1,4 @@
-from src.domain.services.api_get import UrllibAPI
+from src.domain.services.api_get import UrllibAPI, GithubEventList
 
 
 class GetUserActivityCommand:
@@ -6,7 +6,21 @@ class GetUserActivityCommand:
         self.username = username
 
     def execute(self):
+        output = []
+
         response = UrllibAPI().get(
             url=f"https://api.github.com/users/{self.username}/events",
         )
-        return response
+
+        for event in response:
+
+            manage_events = GithubEventList(event)
+
+            if event["type"] == "CreateEvent":
+                output.append(manage_events.get_create_event())
+            elif event["type"] == "PushEvent":
+                output.append(manage_events.get_push_event())
+            else:
+                print("Other event not register", event["type"])
+
+        return output
